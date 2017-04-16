@@ -1,0 +1,5 @@
+---
+ansible_python_interpreter: /usr/bin/python2
+mint_user_name: "{{ lookup('env','USER') }}"
+dotfiles_git: https://github.com/EarlAbides/dotfiles
+oh_my_zsh_git: https://github.com/robbyrussell/oh-my-zsh.git

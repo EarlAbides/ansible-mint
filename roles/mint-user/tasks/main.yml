@@ -1,0 +1,3 @@
+---
+- include: stow.yml
+- include: git.yml
