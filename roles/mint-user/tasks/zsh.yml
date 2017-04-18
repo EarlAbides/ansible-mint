@@ -1,0 +1,19 @@
+---
+- name: Install Zsh
+  apt:
+    pkg: zsh
+    state: latest
+  become: yes
+
+- name: Clone Oh-My-Zsh repo
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh
+    dest: ~/.oh-my-zsh
+    force: yes
+
+- name: Stow zsh config
+  command: "stow -R -d ~/dotfiles -t ~/ zsh"
+
+# TODO: make zsh the default shell
+
+# TODO: Setup fonts/colors per https://gist.github.com/leemour/5749839

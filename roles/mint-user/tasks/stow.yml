@@ -9,4 +9,5 @@
   git:
     accept_hostkey: yes
     repo: "{{ dotfiles_git }}"
-    dest: ~/dotfiles
+    dest: "{{ dotfiles_local }}"
+  ignore_errors: yes

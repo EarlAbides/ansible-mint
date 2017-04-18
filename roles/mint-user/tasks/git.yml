@@ -1,15 +1,25 @@
 ---
-- name: install git
+- name: install git + kdiff3
   apt:
-    name: git
-    state: present
+    name: "{{ item }}"
+    state: latest
+  with_items: ["git", "kdiff3"]
   become: yes
 
-- name: stow gitconfig
-  command: "stow -d ~/dotfiles -t ~/ git"
+- name: copy gitconfig
+  copy:
+    src: "{{ dotfiles_local }}/git/.gitconfig"
+    dest: ~/.gitconfig
+    force: no
 
-- name: configure git user name as "{{ git_user_fullname }}"
-  command: "/usr/bin/git config --global user.name \"{{ git_user_fullname }}\""
-
-- name: configure git email as "{{ git_user_email }}"
-  command: "/usr/bin/git config --global user.email \"{{ git_user_email }}\""
+- name: Setup gitconfig for user and kdiff3
+  command: "{{ item }}"
+  with_items:
+  - git config --global user.name "{{ git_user_fullname }}"
+  - git config --global user.email {{ git_user_email }}
+  - git config --global --add merge.tool kdiff3
+  - git config --global --add mergetool.kdiff3.path /usr/bin/kdiff3
+  - git config --global --add mergetool.kdiff3.trustExitCode false
+  - git config --global --add diff.guitool kdiff3
+  - git config --global --add difftool.kdiff3.path /usr/bin/kdiff3
+  - git config --global --add difftool.kdiff3.trustExitCode false
