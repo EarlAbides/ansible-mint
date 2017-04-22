@@ -1,7 +1,7 @@
 ---
 - name: Install Zsh
   apt:
-    pkg: zsh
+    pkg: zsh,dconf-cli
     state: latest
   become: yes
 
@@ -14,6 +14,39 @@
 - name: Stow zsh config
   command: "stow -R -d ~/dotfiles -t ~/ zsh"
 
-# TODO: make zsh the default shell
+- name: Get current user
+  set_fact:
+    current_user: "{{ lookup('env', 'USER') }}"
+
+- name: Set zsh as default shell
+  user:
+    name: "{{ current_user }}"
+    shell: /bin/zsh
+  become: yes
 
 # TODO: Setup fonts/colors per https://gist.github.com/leemour/5749839
+- name: Create user fonts directory
+  file:
+    path: ~/.fonts
+    state: directory
+
+- name: Copy patched menlo font
+  copy:
+    src: Menlo-Powerline.otf
+    dest: ~/.fonts/Menlo-Powerline.otf
+    force: no
+
+- name: Reload font cache
+  command: "fc-cache -vf ~/.fonts/"
+
+- name: Clone solarized for gnome
+  git:
+    repo: git://github.com/Anthony25/gnome-terminal-colors-solarized.git
+    dest: ~/.solarized
+    force: yes
+
+- name: Install solarized
+  command: "~/.solarized/install.sh --profile Solarized --scheme=dark --install-dircolors"
+
+- name: Change font for solarized profile
+  command: gconftool-2 --set /apps/gnome-terminal/profiles/Solarized/font --type string "Menlo for Powerline 11"

@@ -10,7 +10,6 @@
   copy:
     src: "{{ dotfiles_local }}/git/.gitconfig"
     dest: ~/.gitconfig
-    force: no
 
 - name: Setup gitconfig for user and kdiff3
   command: "{{ item }}"
