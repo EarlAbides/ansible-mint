@@ -1,12 +1,11 @@
 ---
-- name: install git + kdiff3
+- name: Install git + kdiff3
   apt:
-    name: "{{ item }}"
+    name: git,kdiff3
     state: latest
-  with_items: ["git", "kdiff3"]
   become: yes
 
-- name: copy gitconfig
+- name: Copy gitconfig
   copy:
     src: "{{ dotfiles_local }}/git/.gitconfig"
     dest: ~/.gitconfig
