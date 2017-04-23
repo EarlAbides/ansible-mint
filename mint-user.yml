@@ -2,13 +2,13 @@
   roles:
     - mint-user
 
-#  vars_prompt:
-#    - name: "git_user_fullname"
-#      prompt: "Enter your name (for gitconfig)"
-#      private: no
-#    - name: "git_user_email"
-#      prompt: "Enter your email (for gitconfig)"
-#      private: no
-#    - name: "solarized_profile_exists"
-#      prompt: "Have you created a Solarized profile in Gnome terminal?"
-#      private: no
+  vars_prompt:
+    - name: "git_user_fullname"
+      prompt: "Enter your name (for gitconfig)"
+      private: no
+    - name: "git_user_email"
+      prompt: "Enter your email (for gitconfig)"
+      private: no
+    - name: "solarized_profile_exists"
+      prompt: "Have you created a Solarized profile in Gnome terminal?"
+      private: no

@@ -11,3 +11,6 @@ sudo apt install -y linux-image-generic linux-image-extra-virtual
 echo
 echo "*** IMPORTANT ***"
 echo "System reboot required prior to executing run-user.sh"
+echo
+echo "Note, make sure Cinnamon starts up. If it hangs and goes"
+echo "into fallback mode, update the kernel through the updat manager."
