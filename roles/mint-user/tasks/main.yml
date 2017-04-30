@@ -1,5 +1,20 @@
 ---
-#- include: stow.yml
-#- include: git.yml
-#- include: zsh.yml
+- name: Setup config vars
+  set_fact:
+    include_all: no
+    include_stow: no
+    include_git: no
+    include_zsh: no
+    include_docker: no
+
+- include: stow.yml
+  when: include_all or include_stow
+
+- include: git.yml
+  when: include_all or include_git
+
+- include: zsh.yml
+  when: include_all or include_zsh
+
 - include: docker.yml
+  when: include_all or include_docker
