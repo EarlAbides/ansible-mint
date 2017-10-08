@@ -6,6 +6,7 @@
     include_git: no
     include_zsh: no
     include_docker: no
+    include_golang: yes
 
 - include: stow.yml
   when: include_all or include_stow
@@ -18,3 +19,6 @@
 
 - include: docker.yml
   when: include_all or include_docker
+
+- include: golang.yml
+  when: include_all or include_golang

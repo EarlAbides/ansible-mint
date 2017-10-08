@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-ansible-playbook --connection=local --ask-sudo-pass mint-user.yml
+ansible-playbook --connection=local --ask-become-pass mint-user.yml
