@@ -1,0 +1,6 @@
+---
+- name: install utilities
+  apt:
+    pkg: jq
+    state: present
+  become: yes
