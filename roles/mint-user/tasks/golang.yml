@@ -4,3 +4,8 @@
     name: golang-go
     state: present
   become: yes
+
+- name: Create go project folder
+  file:
+    name: "{{ ansible_env.HOME}}/Projects/go"
+    state: directory
